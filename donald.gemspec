@@ -7,5 +7,12 @@ Gem::Specification.new do |s|
   s.summary = %q{Simple vim based mergetool for git users.}
   s.homepage = %q{http://brunograsselli.com.br}
   s.description = %q{Simple vim based mergetool for git users.}
-  s.files = [ "README", "LICENSE", "lib/donald.rb", "lib/donald/merge_tool.rb"]
+  s.default_executable = %q{donald}
+  s.executables = ["donald"]
+  s.files = [
+    "README",
+    "LICENSE",
+    "bin/donald",
+    "lib/donald/merge_tool.rb"
+    ]
 end

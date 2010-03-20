@@ -6,6 +6,19 @@ A simple vim based merge tool for git users
 
 ---------
 
+Install:
+
+sudo gem sources -a http://gemcutter.org
+sudo gem install donald
+
+---------
+
+Use:
+
+donald
+
+---------
+
 (The MIT License)
 
 Copyright © 2009
