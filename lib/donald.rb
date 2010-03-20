@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
-require 'donald/merge_tool'
-
-puts Dir.pwd
+require File.expand_path(File.dirname(__FILE__) + '/donald/merge_tool')
 
 merge_tool = Donald::MergeTool.new
 
-merge_tool.call_vim(merge_tool.unmerged_files(merge_tool.git_status))
+merge_tool.start
