@@ -30,7 +30,7 @@ h2. License
 
 (The MIT License)
 
-Copyright © 2009
+Copyright © 2010
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
