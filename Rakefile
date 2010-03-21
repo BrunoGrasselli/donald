@@ -23,7 +23,7 @@ spec = Gem::Specification.new do |s|
   s.default_executable = %q{donald}
   s.executables = ["donald"]
   s.files = [
-    "README",
+    "README.textile",
     "LICENSE",
     "bin/donald",
     "lib/donald/merge_tool.rb"

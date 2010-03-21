@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.description = %q{Use this gem when a git conflict happens and it will open all conflicted files using vim (one file by tab).}
   s.email = %q{bruno.grasselli@gmail.com}
   s.executables = ["donald"]
-  s.files = ["README", "LICENSE", "bin/donald", "lib/donald/merge_tool.rb"]
+  s.files = ["README.textile", "LICENSE", "bin/donald", "lib/donald/merge_tool.rb"]
   s.homepage = %q{http://brunograsselli.com.br}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
