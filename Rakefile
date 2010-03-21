@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rake'
 require 'spec/rake/spectask'
 
-GEM = 'Donald'
+GEM = 'donald'
 AUTHOR = 'Bruno Grasselli'
 EMAIL = 'bruno.grasselli@gmail.com'
 HOMEPAGE = 'http://brunograsselli.com.br'
