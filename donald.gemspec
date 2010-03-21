@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors = ["Bruno Grasselli"]
   s.date = %q{2010-03-21}
   s.default_executable = %q{donald}
-  s.description = %q{Use this gem whena git conflict happens and it will open vim with all conflicts files using tabs.}
+  s.description = %q{Use this gem when a git conflict happens and it will open all conflicted files using vim (one file by tab).}
   s.email = %q{bruno.grasselli@gmail.com}
   s.executables = ["donald"]
   s.files = ["README", "LICENSE", "bin/donald", "lib/donald/merge_tool.rb"]
