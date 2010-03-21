@@ -1,6 +1,1 @@
-#!/usr/bin/env ruby
 require File.expand_path(File.dirname(__FILE__) + '/../lib/donald/merge_tool')
-
-merge_tool = Donald::MergeTool.new(ARGV)
-
-merge_tool.start

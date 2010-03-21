@@ -1,23 +1,30 @@
-Donald
+h2. About Donald
 
----------
+A simple vim based merge tool for git users.
+Use this gem when a git conflict happens and it will open all conflicted files using vim (one file by tab).
 
-A simple vim based merge tool for git users
-
----------
-
-Install:
+h2. Installation:
 
 sudo gem sources -a http://gemcutter.org
 sudo gem install donald
 
----------
-
-Use:
+h2. Usage:
 
 donald
 
----------
+h2. Options:
+
+-m or --mvim
+Open files using mvim
+
+-g or --gvim
+Open files using gvim
+
+Example:
+
+donald -g
+
+h2. License
 
 (The MIT License)
 

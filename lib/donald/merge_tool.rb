@@ -1,6 +1,11 @@
 module Donald
   class Donald::MergeTool
     DELIMITER = '******************************'
+    DEFAULT_EDITOR = 'vim'
+    
+    def initialize args = []
+      @options = parse_options args
+    end
     
     def start
       files = unmerged_files git_status
@@ -33,7 +38,9 @@ module Donald
     end
     
     def call_vim files
-      system "vim -p #{files.join(' ')}"
+      editor = @options[:editor] || DEFAULT_EDITOR
+      
+      puts "#{editor} -p #{files.join(' ')}"
     end
     
     def print_files files
@@ -54,6 +61,17 @@ module Donald
     
     def print_delimiter
       puts DELIMITER
+    end
+    
+    def parse_options args
+      p args
+      
+      options = {}
+      
+      options.merge! :editor => 'mvim' if args.include?('-m') || args.include?('--mvim')
+      options.merge! :editor => 'gvim' if args.include?('-g') || args.include?('--gvim')
+      
+      options
     end
   end
 end
