@@ -14,10 +14,10 @@ donald
 
 h2. Options:
 
--m or --mvim
+h3. -m or --mvim
 Open files using mvim
 
--g or --gvim
+h3. -g or --gvim
 Open files using gvim
 
 Example:
