@@ -40,7 +40,7 @@ module Donald
     def call_vim files
       editor = @options[:editor] || DEFAULT_EDITOR
       
-      puts "#{editor} -p #{files.join(' ')}"
+      system "#{editor} -p #{files.join(' ')}"
     end
     
     def print_files files
@@ -64,8 +64,6 @@ module Donald
     end
     
     def parse_options args
-      p args
-      
       options = {}
       
       options.merge! :editor => 'mvim' if args.include?('-m') || args.include?('--mvim')
