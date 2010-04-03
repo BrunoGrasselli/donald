@@ -3,7 +3,8 @@ module Donald
     DELIMITER = '******************************'
     DEFAULT_EDITOR = 'vim'
     
-    def initialize args = []
+    def initialize output, args = []
+      @output = output
       @options = parse_options args
     end
     
@@ -40,13 +41,13 @@ module Donald
     def call_vim files
       editor = @options[:editor] || DEFAULT_EDITOR
       
-      system "#{editor} -p #{files.join(' ')}"
+      Kernel.system "#{editor}#{tab_argument editor} #{files.join(' ')}"
     end
     
     def print_files files
       print_delimiter
       
-      files.each {|f| puts f}
+      files.each {|f| @output.puts f}
       
       print_delimiter
     end
@@ -54,13 +55,13 @@ module Donald
     def print_no_files_message
       print_delimiter
       
-      puts 'No unmerged files found'
+      @output.puts 'No unmerged files found'
       
       print_delimiter
     end
     
     def print_delimiter
-      puts DELIMITER
+      @output.puts DELIMITER
     end
     
     def parse_options args
@@ -68,8 +69,13 @@ module Donald
       
       options.merge! :editor => 'mvim' if args.include?('-m') || args.include?('--mvim')
       options.merge! :editor => 'gvim' if args.include?('-g') || args.include?('--gvim')
+      options.merge! :editor => 'mate' if args.include?('-t') || args.include?('--textmate')
       
       options
+    end
+    
+    def tab_argument editor
+      editor.include?('vim') ? ' -p' : ''
     end
   end
 end
