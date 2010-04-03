@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{donald}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Grasselli"]
-  s.date = %q{2010-03-21}
+  s.date = %q{2010-04-03}
   s.default_executable = %q{donald}
   s.description = %q{Use this gem when a git conflict happens and it will open all conflicted files using vim (one file by tab).}
   s.email = %q{bruno.grasselli@gmail.com}

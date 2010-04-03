@@ -14,10 +14,6 @@ donald
 
 h2. Options:
 
-h3. -m or --mvim
-
-Open files using mvim
-
 h3. -g or --gvim
 
 Open files using gvim
@@ -25,6 +21,14 @@ Open files using gvim
 Example:
 
 donald -g
+
+h3. -m or --mvim
+
+Open files using mvim
+
+h3. -t or --textmate
+
+Open files using Textmate
 
 h2. License
 
