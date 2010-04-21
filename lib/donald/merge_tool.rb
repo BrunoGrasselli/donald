@@ -30,12 +30,23 @@ module Donald
       files = []
       
       text.each_line do |line|
-        if line.match /unmerged: (.*)/
-          files << $1.strip
-        end
+        file = conflicted_file(line)
+        files << file unless file.nil?
       end
       
       files
+    end
+    
+    def conflicted_file line      
+      conflicted_types = ['unmerged', 'both modified']
+      
+      conflicted_types.each do |conflicted_type|
+        if line.match /#{conflicted_type}: (.*)/
+          return $1.strip
+        end
+      end
+      
+      nil
     end
     
     def call_vim files

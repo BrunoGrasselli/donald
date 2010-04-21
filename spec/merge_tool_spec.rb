@@ -25,8 +25,8 @@ describe Donald::MergeTool do
   
   context 'with unmerged files' do
     before(:each) do
-      git_status_message = status_message_with_unmerged_files ['app/models/post.rb', 'app/models/comment.rb', 'app/models/author.rb']
-    
+      git_status_message = status_message_with_unmerged_files ['app/models/post.rb', 'app/models/comment.rb'], ['app/models/author.rb']
+      
       merge_tool.stub!(:git_status).and_return(git_status_message)
     end
     
