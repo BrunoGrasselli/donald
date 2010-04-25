@@ -5,12 +5,12 @@ Use this gem when a git conflict happens and it will open all conflicted files u
 
 h2. Installation:
 
-sudo gem sources -a http://gemcutter.org
-sudo gem install donald
+<pre><code>sudo gem sources -a http://gemcutter.org
+sudo gem install donald</code></pre>
 
 h2. Usage:
 
-donald
+<pre><code>donald</code></pre>
 
 h2. Options:
 
@@ -20,15 +20,31 @@ Open files using gvim
 
 Example:
 
-donald -g
+<pre><code>donald -g</code></pre>
 
 h3. -m or --mvim
 
 Open files using mvim
 
+h3. --vim
+
+Open files using vim
+
 h3. -t or --textmate
 
 Open files using Textmate
+
+h2. Setting up your default text editor
+
+Set the $EDITOR variable in your ~/.bashrc file
+
+Example:
+
+<pre><code>export EDITOR="mate"</code></pre>
+
+h2. Searching for conflicts
+
+If you are using vim just type "n" to go to the next conflict.
 
 h2. License
 

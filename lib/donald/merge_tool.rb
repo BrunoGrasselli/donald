@@ -50,9 +50,7 @@ module Donald
     end
     
     def call_vim files
-      editor = @options[:editor] || DEFAULT_EDITOR
-      
-      Kernel.system "#{editor}#{tab_argument editor} #{files.join(' ')}"
+      Kernel.system "#{editor}#{arguments(editor)} #{files.join(' ')}"
     end
     
     def print_files files
@@ -78,6 +76,7 @@ module Donald
     def parse_options args
       options = {}
       
+      options.merge! :editor => 'vim' if args.include?('--vim')
       options.merge! :editor => 'mvim' if args.include?('-m') || args.include?('--mvim')
       options.merge! :editor => 'gvim' if args.include?('-g') || args.include?('--gvim')
       options.merge! :editor => 'mate' if args.include?('-t') || args.include?('--textmate')
@@ -85,8 +84,26 @@ module Donald
       options
     end
     
-    def tab_argument editor
-      editor.include?('vim') ? ' -p' : ''
+    def editor
+      editor = @options[:editor] || system_editor_variable || DEFAULT_EDITOR
+    end
+    
+    def system_editor_variable
+      editor = `echo $EDITOR`.chomp
+      
+      editor.size.zero? ? nil : editor
+    end
+    
+    def arguments editor
+      " #{tab_argument} #{search_argument}" if editor.include?('vim')
+    end
+    
+    def tab_argument
+      '-p'
+    end
+    
+    def search_argument
+      '+/HEAD'
     end
   end
 end
