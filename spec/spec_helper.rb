@@ -7,7 +7,7 @@ def status_message_with_no_unmerged_files
   }
 end
 
-def status_message_with_unmerged_files unmerged_files, both_modified_files = []
+def status_message_with_unmerged_files(files)
   %{
     # Not currently on any branch.
     # Changes to be committed:
@@ -19,16 +19,15 @@ def status_message_with_unmerged_files unmerged_files, both_modified_files = []
     #   (use "git add <file>..." to update what will be committed)
     #   (use "git checkout -- <file>..." to discard changes in working directory)
     #
-#{file_lines(unmerged_files, 'unmerged')}
-#{file_lines(both_modified_files, 'both modified')}
+#{file_lines files}
     #
   }
 end
 
-def file_lines(files, status)
+def file_lines(files)
   result = []
   
-  files.each do |file|
+  files.each_pair do |status, file|
     result << "    #       #{status}:   #{file}"
   end
   

@@ -38,7 +38,7 @@ module Donald
     end
     
     def conflicted_file line      
-      conflicted_types = ['unmerged', 'both modified']
+      conflicted_types = ['unmerged', 'both modified', 'both added']
       
       conflicted_types.each do |conflicted_type|
         if line.match /#{conflicted_type}: (.*)/
