@@ -7,7 +7,7 @@ AUTHOR = 'Bruno Grasselli'
 EMAIL = 'bruno.grasselli@gmail.com'
 HOMEPAGE = 'http://brunograsselli.com.br'
 DATE = "#{Time.now.year}-#{Time.now.month}-#{Time.now.day}"
-GEM_VERSION = '0.1.5'
+GEM_VERSION = '0.1.6'
 SUMMARY = 'Simple vim based mergetool for git users.'
 DESCRIPTION = 'Use this gem when a git conflict happens and it will open all conflicted files using vim (one file by tab).'
 
@@ -26,6 +26,9 @@ spec = Gem::Specification.new do |s|
     "README.textile",
     "LICENSE",
     "bin/donald",
+    "lib/donald.rb",
+    "lib/donald/git.rb",
+    "lib/donald/editor.rb",
     "lib/donald/merge_tool.rb"
     ]
 end
