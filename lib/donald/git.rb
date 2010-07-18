@@ -13,12 +13,12 @@ module Donald
       files
     end
     
+    private
+    
     def status
       `git status`
     end
 
-    private
-    
     def conflicted_file(line)
       CONFLICTED_TYPES.each do |conflicted_type|
         if line.match /#{conflicted_type}: (.*)/

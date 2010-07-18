@@ -33,20 +33,14 @@ describe Donald::MergeTool do
         Kernel.should_receive(:system).with('vim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
         merge_tool.start
       end
-      
-      it 'should call textmate with $EDITOR variable setted as "mate"' do
-        merge_tool.stub!(:system_editor_variable).and_return('mate')
-        Kernel.should_receive(:system).with('mate app/models/author.rb app/models/post.rb app/models/comment.rb')
-        merge_tool.start
-      end
     end
     
     describe 'with --vim argument' do
       let(:merge_tool) { Donald::MergeTool.new(@output, ['--vim']) }
     
-      it 'should call gvim even with $EDITOR variable setted to another editor' do
-        merge_tool.stub!(:system_editor_variable).and_return('mate')
-        Kernel.should_receive(:system).with('vim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
+      it 'should call vim' do
+        Donald::Editor.stub!(:new)
+        Donald::Editor.should_receive(:new).with('vim')
         merge_tool.start
       end
     end

@@ -1,7 +1,5 @@
 module Donald
   class MergeTool
-    DEFAULT_EDITOR = 'vim'
-    
     def initialize(output, args = [])
       @output = output
       @options = parse_options args
@@ -22,6 +20,10 @@ module Donald
     
     def call_vim(files)
       Kernel.system "#{editor}#{arguments(editor)} #{files.join(' ')}"
+    end
+
+    def editor
+      @editor || @editor = Donald::Editor.new(@options[:editor])
     end
     
     def print_files(files)
@@ -55,16 +57,8 @@ module Donald
       options
     end
     
-    def editor
-      @options[:editor] || system_editor_variable || DEFAULT_EDITOR
-    end
-    
-    def system_editor_variable
-      `echo $EDITOR`.chomp.size.zero? ? nil : editor
-    end
-    
     def arguments(editor)
-      " #{tab_argument} #{search_argument}" if editor.include? 'vim'
+      " #{tab_argument} #{search_argument}" if editor.to_s.include? 'vim'
     end
     
     def tab_argument
