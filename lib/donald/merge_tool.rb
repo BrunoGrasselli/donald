@@ -1,9 +1,9 @@
 module Donald
-  class Donald::MergeTool
-    DELIMITER = '******************************'
+  class MergeTool
     DEFAULT_EDITOR = 'vim'
+    CONFLICTED_TYPES = ['unmerged', 'both modified', 'both added']
     
-    def initialize output, args = []
+    def initialize(output, args = [])
       @output = output
       @options = parse_options args
     end
@@ -13,7 +13,6 @@ module Donald
       
       if files.any?
         print_files files
-        
         call_vim files
       else
         print_no_files_message
@@ -26,7 +25,7 @@ module Donald
       `git status`
     end
     
-    def unmerged_files text
+    def unmerged_files(text)
       files = []
       
       text.each_line do |line|
@@ -37,10 +36,8 @@ module Donald
       files
     end
     
-    def conflicted_file line      
-      conflicted_types = ['unmerged', 'both modified', 'both added']
-      
-      conflicted_types.each do |conflicted_type|
+    def conflicted_file(line)
+      CONFLICTED_TYPES.each do |conflicted_type|
         if line.match /#{conflicted_type}: (.*)/
           return $1.strip
         end
@@ -49,11 +46,11 @@ module Donald
       nil
     end
     
-    def call_vim files
+    def call_vim(files)
       Kernel.system "#{editor}#{arguments(editor)} #{files.join(' ')}"
     end
     
-    def print_files files
+    def print_files(files)
       print_delimiter
       
       files.each {|f| @output.puts f}
@@ -70,10 +67,10 @@ module Donald
     end
     
     def print_delimiter
-      @output.puts DELIMITER
+      @output.puts '*' * 30
     end
     
-    def parse_options args
+    def parse_options(args)
       options = {}
       
       options.merge! :editor => 'vim' if args.include?('--vim')
@@ -85,17 +82,15 @@ module Donald
     end
     
     def editor
-      editor = @options[:editor] || system_editor_variable || DEFAULT_EDITOR
+      @options[:editor] || system_editor_variable || DEFAULT_EDITOR
     end
     
     def system_editor_variable
-      editor = `echo $EDITOR`.chomp
-      
-      editor.size.zero? ? nil : editor
+      `echo $EDITOR`.chomp.size.zero? ? nil : editor
     end
     
-    def arguments editor
-      " #{tab_argument} #{search_argument}" if editor.include?('vim')
+    def arguments(editor)
+      " #{tab_argument} #{search_argument}" if editor.include? 'vim'
     end
     
     def tab_argument

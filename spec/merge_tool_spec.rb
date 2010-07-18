@@ -12,13 +12,11 @@ describe Donald::MergeTool do
     
     before(:each) do
       git_status_message = status_message_with_no_unmerged_files
-    
       merge_tool.stub!(:git_status).and_return(git_status_message)
     end
   
     it 'should send an error message' do
       output.should_receive(:puts).with('No unmerged files found')
-    
       merge_tool.start
     end
   end
@@ -37,15 +35,12 @@ describe Donald::MergeTool do
     
       it 'should call vim' do
         Kernel.should_receive(:system).with('vim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
-      
         merge_tool.start
       end
       
       it 'should call textmate with $EDITOR variable setted as "mate"' do
         merge_tool.stub!(:system_editor_variable).and_return('mate')
-
         Kernel.should_receive(:system).with('mate app/models/author.rb app/models/post.rb app/models/comment.rb')
-
         merge_tool.start
       end
     end
@@ -55,9 +50,7 @@ describe Donald::MergeTool do
     
       it 'should call gvim even with $EDITOR variable setted to another editor' do
         merge_tool.stub!(:system_editor_variable).and_return('mate')
-        
         Kernel.should_receive(:system).with('vim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
-      
         merge_tool.start
       end
     end
@@ -67,7 +60,6 @@ describe Donald::MergeTool do
     
       it 'should call gvim' do
         Kernel.should_receive(:system).with('gvim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
-      
         merge_tool.start
       end
     end
@@ -77,7 +69,6 @@ describe Donald::MergeTool do
     
       it 'should call gvim' do
         Kernel.should_receive(:system).with('gvim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
-      
         merge_tool.start
       end
     end
@@ -87,7 +78,6 @@ describe Donald::MergeTool do
     
       it 'should call mvim' do
         Kernel.should_receive(:system).with('mvim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
-      
         merge_tool.start
       end
     end
@@ -97,7 +87,6 @@ describe Donald::MergeTool do
     
       it 'should call mvim' do
         Kernel.should_receive(:system).with('mvim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
-      
         merge_tool.start
       end
     end
@@ -107,7 +96,6 @@ describe Donald::MergeTool do
     
       it 'should call textmate' do
         Kernel.should_receive(:system).with('mate app/models/author.rb app/models/post.rb app/models/comment.rb')
-      
         merge_tool.start
       end
     end
@@ -117,11 +105,8 @@ describe Donald::MergeTool do
     
       it 'should call textmate' do
         Kernel.should_receive(:system).with('mate app/models/author.rb app/models/post.rb app/models/comment.rb')
-      
         merge_tool.start
       end
     end
-    
   end
-  
 end
