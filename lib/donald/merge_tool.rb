@@ -1,7 +1,6 @@
 module Donald
   class MergeTool
     DEFAULT_EDITOR = 'vim'
-    CONFLICTED_TYPES = ['unmerged', 'both modified', 'both added']
     
     def initialize(output, args = [])
       @output = output
@@ -9,7 +8,7 @@ module Donald
     end
     
     def start
-      files = unmerged_files git_status
+      files = Donald::Git.new.conflicted_files
       
       if files.any?
         print_files files
@@ -20,31 +19,6 @@ module Donald
     end
     
     private
-    
-    def git_status
-      `git status`
-    end
-    
-    def unmerged_files(text)
-      files = []
-      
-      text.each_line do |line|
-        file = conflicted_file(line)
-        files << file unless file.nil?
-      end
-      
-      files
-    end
-    
-    def conflicted_file(line)
-      CONFLICTED_TYPES.each do |conflicted_type|
-        if line.match /#{conflicted_type}: (.*)/
-          return $1.strip
-        end
-      end
-      
-      nil
-    end
     
     def call_vim(files)
       Kernel.system "#{editor}#{arguments(editor)} #{files.join(' ')}"

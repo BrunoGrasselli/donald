@@ -1,4 +1,7 @@
-require File.expand_path(File.dirname(__FILE__) + '/../lib/donald/merge_tool')
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'rubygems'
+require 'donald'
 
 def status_message_with_no_unmerged_files
   %{
