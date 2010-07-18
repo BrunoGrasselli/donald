@@ -10,7 +10,7 @@ describe Donald::MergeTool do
     
   context 'with no unmerged files' do
     before(:each) do
-      @git.stub!(:conflicted_files).and_return([])
+      @git.stub!(:unmerged_files).and_return([])
     end
 
     let(:merge_tool) { Donald::MergeTool.new(@output) }
@@ -23,7 +23,7 @@ describe Donald::MergeTool do
   
   context 'with unmerged files' do
     before(:each) do
-      @git.stub!(:conflicted_files).and_return(["app/models/author.rb", "app/models/post.rb", "app/models/comment.rb"])
+      @git.stub!(:unmerged_files).and_return(["app/models/author.rb", "app/models/post.rb", "app/models/comment.rb"])
     end
     
     describe 'with no arguments' do

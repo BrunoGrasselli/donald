@@ -7,7 +7,7 @@ AUTHOR = 'Bruno Grasselli'
 EMAIL = 'bruno.grasselli@gmail.com'
 HOMEPAGE = 'http://brunograsselli.com.br'
 DATE = "#{Time.now.year}-#{Time.now.month}-#{Time.now.day}"
-GEM_VERSION = '0.1.6'
+GEM_VERSION = '0.1.7'
 SUMMARY = 'Simple vim based mergetool for git users.'
 DESCRIPTION = 'Use this gem when a git conflict happens and it will open all conflicted files using vim (one file by tab).'
 

@@ -1,32 +1,13 @@
 module Donald
   class Git
-    CONFLICTED_TYPES = ['unmerged', 'both modified', 'both added']
-
-    def conflicted_files
-      files = []
-      
-      status.each_line do |line|
-        file = conflicted_file(line)
-        files << file unless file.nil?
-      end
-      
-      files
+    def unmerged_files
+      ls_files.split("\n")
     end
     
     private
     
-    def status
-      `git status`
-    end
-
-    def conflicted_file(line)
-      CONFLICTED_TYPES.each do |conflicted_type|
-        if line.match /#{conflicted_type}: (.*)/
-          return $1.strip
-        end
-      end
-      
-      nil
+    def ls_files
+      `git ls-files --unmerged | cut -f2 | sort -u`
     end
   end
 end

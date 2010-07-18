@@ -6,7 +6,7 @@ module Donald
     end
     
     def start
-      files = Donald::Git.new.conflicted_files
+      files = Donald::Git.new.unmerged_files
       
       if files.any?
         print_files files
