@@ -28,6 +28,7 @@ spec = Gem::Specification.new do |s|
     "lib/donald.rb",
     "lib/donald/git.rb",
     "lib/donald/editor.rb",
+    "lib/donald/printer.rb",
     "lib/donald/merge_tool.rb"
     ]
 end

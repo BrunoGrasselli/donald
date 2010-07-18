@@ -1,7 +1,7 @@
 module Donald
   class MergeTool
     def initialize(output, args = [])
-      @output = output
+      @printer = Donald::Printer.new output
       @options = parse_options args
     end
     
@@ -9,41 +9,21 @@ module Donald
       files = Donald::Git.new.unmerged_files
       
       if files.any?
-        print_files files
-        call_vim files
+        @printer.print_files files
+        call_editor files
       else
-        print_no_files_message
+        @printer.print_no_files_message
       end
     end
     
     private
     
-    def call_vim(files)
+    def call_editor(files)
       Kernel.system "#{editor}#{arguments(editor)} #{files.join(' ')}"
     end
 
     def editor
       @editor || @editor = Donald::Editor.new(@options[:editor])
-    end
-    
-    def print_files(files)
-      print_delimiter
-      
-      files.each {|f| @output.puts f}
-      
-      print_delimiter
-    end
-    
-    def print_no_files_message
-      print_delimiter
-      
-      @output.puts 'No unmerged files found'
-      
-      print_delimiter
-    end
-    
-    def print_delimiter
-      @output.puts '*' * 30
     end
     
     def parse_options(args)
