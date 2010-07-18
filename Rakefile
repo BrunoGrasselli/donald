@@ -24,7 +24,6 @@ spec = Gem::Specification.new do |s|
   s.executables = ["donald"]
   s.files = [
     "README.textile",
-    "LICENSE",
     "bin/donald",
     "lib/donald.rb",
     "lib/donald/git.rb",
