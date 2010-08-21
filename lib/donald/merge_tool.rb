@@ -23,7 +23,7 @@ module Donald
     end
 
     def editor
-      @editor || @editor = Donald::Editor.new(@options[:editor])
+      @editor ||= Donald::Editor.new(@options[:editor])
     end
     
     def parse_options(args)
