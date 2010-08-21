@@ -2,6 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Donald::MergeTool do
   before(:each) do
+    Donald::Environment.stub!(:editor_variable).and_return(nil)
     Kernel.stub!(:system)
     @git = Donald::Git.new
     Donald::Git.stub!(:new).and_return(@git)
@@ -30,10 +31,6 @@ describe Donald::MergeTool do
       let(:merge_tool) { Donald::MergeTool.new(@output) }
     
       it 'should call vim' do
-        editor = Donald::Editor.new
-        editor.stub!(:system_editor_variable).and_return(nil)
-        Donald::Editor.stub!(:new).and_return(editor)
-
         Kernel.should_receive(:system).with('vim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
         merge_tool.start
       end

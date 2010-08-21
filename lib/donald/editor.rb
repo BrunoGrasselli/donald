@@ -7,14 +7,7 @@ module Donald
     end
 
     def to_s
-      @editor_name || system_editor_variable || DEFAULT_EDITOR
-    end
-
-    private
-    
-    def system_editor_variable
-      editor = `echo $EDITOR`
-      editor.chomp.size.zero? ? nil : editor
+      @editor_name || Donald::Environment.editor_variable || DEFAULT_EDITOR
     end
   end
 end
