@@ -30,6 +30,10 @@ describe Donald::MergeTool do
       let(:merge_tool) { Donald::MergeTool.new(@output) }
     
       it 'should call vim' do
+        editor = Donald::Editor.new
+        editor.stub!(:system_editor_variable).and_return(nil)
+        Donald::Editor.stub!(:new).and_return(editor)
+
         Kernel.should_receive(:system).with('vim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
         merge_tool.start
       end
