@@ -11,18 +11,13 @@ module Donald
       
       if files.any?
         @printer.print_files files
-        call_editor files
+        @editor.run files
       else
         @printer.print_no_files_message
       end
     end
     
     private
-    
-    def call_editor(files)
-      Kernel.system "#{@editor}#{arguments} #{files.join(' ')}"
-    end
-
     def parse_options(args)
       options = {}
       
@@ -32,18 +27,6 @@ module Donald
       options.merge! :editor => 'mate' if args.include?('-t') || args.include?('--textmate')
       
       options
-    end
-    
-    def arguments
-      " #{tab_argument} #{search_argument}" if @editor.to_s.include? 'vim'
-    end
-    
-    def tab_argument
-      '-p'
-    end
-    
-    def search_argument
-      '+/HEAD'
     end
   end
 end

@@ -40,16 +40,6 @@ describe Donald::MergeTool do
         end
       end
 
-      describe 'with --vim argument' do
-        let(:merge_tool) { Donald::MergeTool.new(@output, ['--vim']) }
-
-        it 'should call vim' do
-          Donald::Editor.stub!(:new)
-          Donald::Editor.should_receive(:new).with('vim')
-          merge_tool.start
-        end
-      end
-
       describe 'with --gvim argument' do
         let(:merge_tool) { Donald::MergeTool.new(@output, ['--gvim']) }
 
@@ -120,6 +110,15 @@ describe Donald::MergeTool do
         it 'should call mate' do
           Kernel.should_receive(:system).with('mate app/models/author.rb app/models/post.rb app/models/comment.rb')
           Donald::MergeTool.new(@output).start
+        end
+      end
+
+      describe 'with --vim argument' do
+        let(:merge_tool) { Donald::MergeTool.new(@output, ['--vim']) }
+
+        it 'should call vim' do
+          Kernel.should_receive(:system).with('vim -p +/HEAD app/models/author.rb app/models/post.rb app/models/comment.rb')
+          merge_tool.start
         end
       end
     end
