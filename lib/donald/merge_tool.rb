@@ -18,6 +18,7 @@ module Donald
     end
     
     private
+
     def parse_options(args)
       options = {}
       
