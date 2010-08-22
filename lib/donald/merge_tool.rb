@@ -2,7 +2,7 @@ module Donald
   class MergeTool
     def initialize(output, args = [])
       @printer = Donald::Printer.new output
-      @editor = Donald::Editor.new(editor_from(args))
+      @editor = Donald::Editor.new(args.first)
     end
     
     def start
@@ -14,12 +14,6 @@ module Donald
       else
         @printer.print_no_files_message
       end
-    end
-    
-    private
-
-    def editor_from(args)
-      args.any? ? args.first : nil
     end
   end
 end
