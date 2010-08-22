@@ -2,8 +2,7 @@ module Donald
   class MergeTool
     def initialize(output, args = [])
       @printer = Donald::Printer.new output
-      @options = parse_options args
-      @editor = Donald::Editor.new @options[:editor]
+      @editor = Donald::Editor.new(editor_from(args))
     end
     
     def start
@@ -19,15 +18,8 @@ module Donald
     
     private
 
-    def parse_options(args)
-      options = {}
-      
-      options.merge! :editor => 'vim' if args.include?('--vim')
-      options.merge! :editor => 'mvim' if args.include?('-m') || args.include?('--mvim')
-      options.merge! :editor => 'gvim' if args.include?('-g') || args.include?('--gvim')
-      options.merge! :editor => 'mate' if args.include?('-t') || args.include?('--textmate')
-      
-      options
+    def editor_from(args)
+      args.any? ? args.first : nil
     end
   end
 end

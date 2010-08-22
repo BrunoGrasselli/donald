@@ -12,27 +12,17 @@ h2. Usage:
 
 <pre><code>donald</code></pre>
 
-h2. Options:
+h2. Using a different editor:
 
-h3. -g or --gvim
+You can use another editor sending its name as a parameter:
 
-Open files using gvim
+<pre><code>donald gvim</code></pre>
 
-Example:
+Or
 
-<pre><code>donald -g</code></pre>
+<pre><code>donald mate</code></pre>
 
-h3. -m or --mvim
-
-Open files using mvim
-
-h3. --vim
-
-Open files using vim
-
-h3. -t or --textmate
-
-Open files using Textmate
+If you inform more than one parameter donald will ignore it.
 
 h2. Setting up your default text editor
 
@@ -40,7 +30,7 @@ Set the $EDITOR variable in your ~/.bashrc file
 
 Example:
 
-<pre><code>export EDITOR="mate"</code></pre>
+<pre><code>export EDITOR="gedit"</code></pre>
 
 h2. Searching for conflicts
 
