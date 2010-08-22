@@ -10,10 +10,6 @@ module Donald
       Kernel.system "#{@name}#{arguments} #{files.join(' ')}"
     end
 
-    def to_s
-      @name
-    end
-
     private
 
     def arguments
