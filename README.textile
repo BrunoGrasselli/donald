@@ -15,9 +15,9 @@ h2. Using a different editor:
 
 You can use another editor sending its name as a parameter:
 
-<pre><code>donald gvim</code></pre>
+Examples:
 
-Or
+<pre><code>donald gvim</code></pre>
 
 <pre><code>donald mate</code></pre>
 
