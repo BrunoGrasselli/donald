@@ -5,8 +5,7 @@ Use this gem when a git conflict happens and it will open all conflicted files u
 
 h2. Installation:
 
-<pre><code>sudo gem sources -a http://gemcutter.org
-sudo gem install donald</code></pre>
+<pre><code>sudo gem install donald</code></pre>
 
 h2. Usage:
 
