@@ -3,6 +3,7 @@ module Donald
     def initialize(output, args = [])
       @printer = Donald::Printer.new output
       @options = parse_options args
+      @editor = Donald::Editor.new(@options[:editor])
     end
     
     def start
@@ -19,13 +20,9 @@ module Donald
     private
     
     def call_editor(files)
-      Kernel.system "#{editor}#{arguments(editor)} #{files.join(' ')}"
+      Kernel.system "#{@editor}#{arguments} #{files.join(' ')}"
     end
 
-    def editor
-      @editor ||= Donald::Editor.new(@options[:editor])
-    end
-    
     def parse_options(args)
       options = {}
       
@@ -37,8 +34,8 @@ module Donald
       options
     end
     
-    def arguments(editor)
-      " #{tab_argument} #{search_argument}" if editor.to_s.include? 'vim'
+    def arguments
+      " #{tab_argument} #{search_argument}" if @editor.to_s.include? 'vim'
     end
     
     def tab_argument
