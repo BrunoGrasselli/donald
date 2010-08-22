@@ -3,7 +3,7 @@ module Donald
     def initialize(output, args = [])
       @printer = Donald::Printer.new output
       @options = parse_options args
-      @editor = Donald::Editor.new(@options[:editor])
+      @editor = Donald::Editor.new @options[:editor]
     end
     
     def start
