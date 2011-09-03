@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>Donald - a simple vim based merge tool</title>
+    <link rel="stylesheet" href="assets/bootstrap-1.2.0.min.css">
+    <link rel="stylesheet" href="assets/base.css">
+  </head>
+  <body>
+    <div class="topbar-wrapper" style="z-index: 5;">
+      <div class="topbar">
+        <div class="topbar-inner">
+          <div class="container">
+            <ul class="nav secondary-nav">
+              <li><a href="http://brunograsselli.com.br">Author's Blog</a></li>
+            </ul>
+          </div>
+        </div><!-- /topbar-inner -->
+      </div><!-- /topbar -->
+    </div><!-- /topbar-wrapper -->
+
+    <div class="container">
+      <div class="row">
+        <div class="span10 columns">
+          <div class="page-header">
+            <h1>Donald <small>A simple vim based merge tool for git users</small></h1>
+          </div>
+          <h2>
+            Use this gem when a git conflict happens and it will open all conflicted files using vim (one file by tab).
+          </h2>
+          <div>
+            <h3>Usage</h3>
+            <div class="alert-message block-message">donald</div>
+            <h3>Using a different editor:</h3>
+            <p>You can use another editor sending its name as a parameter:</p>
+            <div class="alert-message block-message">
+              donald gvim<br />
+              donald mate
+            </div>
+            <p>If you inform more than one parameter donald will ignore it.</p>
+            <h3>Setting up your default text editor</h3>
+            <p>Set the $EDITOR variable in your ~/.bashrc file</p>
+            <div class="alert-message block-message">
+              export EDITOR="gedit"
+            </div>
+            <h3>Searching for conflicts</h3>
+            <p>
+              If you are using vim just type <strong>“n”</strong> to go to the next conflict.
+            </p>
+          </div>
+        </div>
+        <div class="span6 columns">
+          <div class="well">
+            <h1>Install it now!</h1>
+            <div class="alert-message success">
+              <p><strong>gem install donald</strong></p>
+            </div>
+          </div>
+          <div class="well">
+            <h1>And contribute...</h1>
+            <a href="http://github.com/BrunoGrasselli/donald" class="btn large primary">Source code</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </body>
+</html>
+
