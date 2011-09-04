@@ -4,16 +4,24 @@ module Donald
       @printer = Donald::Printer.new output
       @editor = Donald::Editor.new(args.first)
     end
-    
+
     def start
-      files = Donald::Git.new.unmerged_files
-      
-      if files.any?
-        @printer.print_files files
-        @editor.run files
-      else
-        @printer.print_no_files_message
-      end
+      unmerged_files.any? ? process_files : print_no_files_message
+    end
+
+    private
+
+    def unmerged_files
+      @unmerged_files ||= Donald::Git.new.unmerged_files
+    end
+
+    def process_files
+      @printer.print_files unmerged_files
+      @editor.run unmerged_files
+    end
+
+    def print_no_files_message
+      @printer.print_no_files_message
     end
   end
 end
